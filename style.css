@@ -1,0 +1,1143 @@
+html, body {
+    height: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    background-color: #ffffff;
+    color: #720d04;
+    line-height: 1.6;
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1; /* prend tout l’espace disponible pour pousser le footer */
+}
+@font-face {
+    font-family: 'Ferionapi-main';
+    src: url('Images/Feroniapi-MediumItalic.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+/* ================= NAVBAR ================= */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 28px 80px 18px;
+    border-bottom: 1px solid #720d04;
+    position: sticky;
+    top: 0;
+    background-color: #ffffff;
+    z-index: 100;
+}
+.nav-links {
+  display: flex;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center; /* aligne verticalement */
+  gap: 10px; /* espace entre logo et texte */
+  text-decoration: none; /* supprime le soulignement du lien */
+  color: inherit;        /* garde la couleur du texte */
+}
+.logo-container:hover {
+    opacity: 0.8; /* optionnel : léger effet au survol */
+}
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* espace logo / texte */
+  text-decoration: none; /* enlève le soulignement */
+}
+.logo-img {
+  height: 50px;
+  width: auto;
+}
+
+.logo-text {
+  font-size: 18px;
+  font-weight: 500;
+  color: #720d04;
+}
+
+.nav-links ul {
+    list-style: none;
+    display: flex;
+    gap: 56px;
+}
+
+.nav-links a {
+    font-size: 18px;
+    font-weight: 500;
+    color: #720d04;
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 2px;
+    letter-spacing: 0.02em;
+}
+
+.nav-links > ul > li > a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0%;
+    height: 1px;
+    background-color:#720d04;
+    transition: width 0.25s ease;
+}
+
+.nav-links > ul > li > a:hover::after {
+    width: 100%;
+}
+
+.right-menu {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Bouton encadré pour Me contacter */
+.right-menu .nav-link {
+    font-size: 18px;
+    font-weight: 500;
+    color: #720d04;
+    text-decoration: none;
+    padding: 6px 16px;
+    border: 1px solid #720d04;   /* encadré */
+    border-radius: 4px;           /* coins arrondis */
+    transition: background-color 0.25s ease, color 0.25s ease;
+    position: relative;
+}
+
+/* Hover : fond légèrement coloré */
+.right-menu .nav-link:hover {
+    background-color: #cfb8e98d;
+    color: #720d04;
+}
+
+/* Supprime le soulignement hover de la nav normale pour ce bouton */
+.right-menu .nav-link::after {
+    content: none;
+}
+
+/* ================= SECTIONS ================= */
+/* Par défaut, on cache toutes les sections */
+.page-section {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease; /* Optionnel : effet fondu */
+}
+
+/* On affiche UNIQUEMENT la section active */
+.page-section.active {
+    display: block;
+    opacity: 1;
+}
+/* ================= SECTIONS FULL WIDTH ================= */
+/* Section pleine largeur uniquement */
+.page-section-full {
+    max-width: 100vw;       /* largeur totale de la fenêtre */
+    width: 100vw;
+    padding-left: 0;        /* plus de padding interne */
+    padding-right: 0;
+    margin-left: calc(-50vw + 50%);  /* on compense le centrage du body */
+    margin-right: calc(-50vw + 50%);
+}
+
+/* ================= FOOTER ================= */
+.site-footer {
+    margin-top: auto;
+    background-color: #461d14;
+    color: #ffffff;
+    text-align: center;
+    padding: 14px 20px;
+    font-size: 14px;
+    width: 100%;
+}
+/* ================= INTRO PROJETS ================= */
+.projects-intro {
+    width: 100%;
+    max-width: 1270px;       /* largeur du texte pour ne pas coller aux bords */
+    margin: 40px auto 60px;  /* espace au-dessus et en dessous */
+    text-align: left;        /* ou center si tu préfères centré */
+}
+
+.projects-intro p {
+    font-family: ' Libre Baskerville ', 400 Italic;  /* typo fine et moderne */
+    color: #720d04;                      /* couleur principale */
+    font-weight: 400;                     /* texte léger */
+    font-size: 25px;                      /* texte grand */
+    line-height: 1.4;                     /* espace entre les lignes */
+}
+
+/* Responsive pour écrans plus petits */
+@media (max-width: 768px) {
+    .projects-intro p {
+        font-size: 20px;                  /* texte plus petit sur mobile */
+        line-height: 1.4;
+    }
+}
+/* ================= RÉALISATIONS ================= */
+
+.page-section-full {
+    width: 100%;
+    max-width: none;      /* prend toute la largeur */
+    padding: 0 20px;      /* marge sur les côtés */
+    margin: 0;            /* pas de centrage automatique */
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colonnes */
+    column-gap: 16px;    /* espace horizontal entre colonnes */
+    row-gap: 32px;       /* espace vertical entre lignes */
+    margin: 0 auto;
+    padding: 0;
+}
+
+.project-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.project-img {
+    width: 100%;
+    height: 320px;       /* toutes les images même hauteur */
+    overflow: hidden;
+    position: relative;
+}
+
+.project-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.project-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(211, 40, 40, 0); /* transparent par défaut */
+    transition: background-color 0.4s ease;
+}
+
+.project-img:hover img {
+    transform: scale(1.08);
+}
+
+.project-img:hover .project-overlay {
+    background-color: rgba(67, 2, 2, 0.175); /* assombrissement brun */
+}
+
+.project-text {
+    margin-top: 4px; /* espace image → texte */
+    text-align: left;
+}
+
+.project-title,
+.project-type {
+    margin: 0;
+    line-height: 1.2; /* réduit l'espace entre titre et type */
+}
+
+.project-title {
+    font-weight: 500;
+    font-size: 18px;
+    color: #720d04;
+}
+
+.project-type {
+    font-weight: 500;
+    font-size: 18px;
+    color: #8b78e0;
+    margin-top: 2px; /* petit espace sous le titre */
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
+        column-gap: 12px;
+        row-gap: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr; /* 1 colonne */
+        column-gap: 0;
+        row-gap: 24px;
+    }
+
+    .project-img {
+        height: auto;
+        aspect-ratio: 16/9; /* image responsive */
+    }
+}
+/* Ajoute de l’espace après la galerie */
+#realisations {
+    padding-bottom: 30px; /* ajuste la valeur selon le rendu souhaité */
+}
+/* ================= SERVICES ================= */
+#services {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 2cm;  
+    padding-right: 2cm;
+    padding-top: 40px;   /* espace au-dessus de la phrase "services" */
+    padding-bottom: 40px; /* espace sous la phrase avant les services */
+    margin: 0;
+    color: #720d04;
+}
+
+.services-intro {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 50px;
+    padding: 0; 
+    text-align: left;
+    font-family: 'Libre Baskerville', 400 Italic;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.4;
+    color: #720d04;
+
+}
+.page-section {
+  display: none;
+}
+
+.page-section.active {
+  display: block;
+}
+
+/* Liste des services */
+.services-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+/* Liste des services */
+.services-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    /* On garde start pour qu'ils soient indépendants quand ça s'ouvre */
+    align-items: start; 
+}
+
+/* Carte service */
+.service-card {
+    border: 1px solid rgba(165,42,42,0.35);
+    border-radius: 20px;
+    padding: 24px;
+    background-color:#f9f7fd;
+    display: flex;
+    flex-direction: column;
+    
+    /* ASTUCE ICI : On force une hauteur minimale pour qu'ils aient l'air égaux au départ */
+    min-height: 550px; /* Ajuste ce chiffre selon ton contenu (ex: 500px, 580px...) */
+    
+    transition: border-color 0.3s ease;
+}
+/* Effet hover : changement de bordure sur les blocs service */
+.service-card {
+    transition: border-color 0.3s ease; /* animation douce */
+}
+
+.service-card:hover {
+    border-color: #720d04;
+    border-width: 1.9px; /* Correction */
+}
+
+.service-details summary::-webkit-details-marker {
+  display: none; /* supprime la flèche native */
+}
+
+.service-details summary {
+  cursor: pointer;
+  font-weight: 500;
+  color: #2c10ab;
+  text-decoration: underline;
+  margin-top: 10px;
+}
+
+/* Image */
+.service-card img {
+  width: 100%;
+  height: 220px;       /* ou la taille que tu veux */
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 20px; /* ← ajoute cet espace entre l'image et le titre */
+}
+
+/* Titre */
+.service-title {
+    font-size: 22px;
+    font-weight: 500;
+    color: #720d04;
+    margin-bottom: 12px;
+}
+
+/* Description TOUJOURS visible */
+.service-description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #8b78e0;
+    margin-bottom: 16px;
+}
+
+/* Détails */
+.service-details {
+    margin-top: auto;
+}
+
+/* En savoir plus */
+.service-details summary {
+    list-style: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    color: #8b78e0ca;
+    text-decoration: underline;
+}
+
+.service-details summary::-webkit-details-marker {
+    display: none;
+}
+
+.service-details summary:hover {
+    opacity: 0.7;
+}
+
+/* Contenu déroulé */
+.read-more {
+    cursor: pointer;
+    position: relative;
+    font-size: 15px;
+    font-weight: 600;          /* texte en bold */
+    color: #b7afd9;
+    text-decoration: none !important;  /* SUPPRIME le soulignement */
+    padding-right: 20px;       /* espace pour la flèche */
+    transition: opacity 0.3s ease;
+    display: inline-block;     /* pour que la flèche soit bien positionnée */
+}
+
+.read-more::after {
+    content: "→";              /* flèche discrète à droite */
+    position: absolute;
+    right: 0;
+    transition: transform 0.3s ease;
+}
+
+.service-details[open] .read-more::after {
+    transform: rotate(90deg);  /* flèche pivote quand ouvert */
+}
+
+.read-more:hover {
+    opacity: 0.8;              /* léger effet au survol */
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1024px) {
+    .services-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    #services {
+        padding: 60px 20px 0;
+    }
+
+    .services-list {
+        grid-template-columns: 1fr;
+    }
+
+    .services-intro p {
+        font-size: 20px;
+    }
+}
+#process {
+  width: 100%;
+  background-color:  #e3dff6;
+  padding: 60px 2cm;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.process-intro {
+  max-width: 720px;
+  margin-bottom: 80px;
+  color: #720d04;
+  text-align: left; /* <-- texte calé à gauche */
+}
+
+.process-intro h2 {
+  font-size: 28px;
+  font-weight: 400;
+  color: #720d04;
+  margin-bottom: 5px;
+}
+
+.process-intro p {
+  font-family: ' Libre Baskerville ', 400 Italic;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #8b78e0;
+}
+
+/* Grille 4 colonnes */
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  position: relative;
+  align-items: stretch; /* <-- toutes les étapes auront la même hauteur */
+}
+
+/* Ligne de connexion */
+.connection-line {
+  position: absolute;
+  top: 50%; /* centre verticalement dans les blocs */
+  left: 0;
+  width: 100%;
+  height: 0px;
+  background-color: #720d04;
+  z-index: 1;
+}
+
+/* Étape */
+.process-step {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: #fff;
+  padding: 20px 15px;  /* espace intérieur */
+  border-radius: 12px;
+  text-align: left;
+  z-index: 2;
+  min-height: 300px; /* hauteur uniforme */
+}
+
+/* Titre */
+.process-step h3 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #720d04;
+    text-align: left;       /* titre aligné à gauche */
+    max-width: 100%;         /* prend toute la largeur disponible du bloc */
+    margin: 0 0 50px 0;     /* pas de centrage horizontal, juste espace en bas */
+}
+.process-step h3 {
+  position: relative;
+  display: inline-block;
+  border-bottom: 2px solid  #e9e5f5; /* ligne toujours visible */
+  padding-bottom: 4px; /* espace entre le texte et la ligne */
+}
+
+/* Texte */
+.process-step p {
+  font-size: 16px;          /* même taille que les blocs services */
+  line-height: 1.6;         /* même interligne */
+  color: #720d04;         /* couleur texte */
+  text-align: left;         /* texte justifié à gauche */
+  max-width: 100%;           /* prend toute la largeur du bloc */
+  margin: 0;                /* pas de centrage horizontal */
+}
+
+.highlight {
+  color: #8b78e0;; /* ou la couleur que tu veux */
+  font-weight: 500; /* optionnel pour accentuer */
+}
+
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .process-steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .process-steps {
+    grid-template-columns: 1fr;
+  }
+  .connection-line {
+    top: 25px;
+  }
+}
+/* ================= CTA SERVICES ================= */
+
+.cta-services {
+    width: 100%;
+    padding: 100px 0;
+    background-color: #ffffff;
+    display: none; /* Caché par défaut */
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* On affiche uniquement quand il a la classe active */
+.cta-services.active {
+    display: flex;
+}
+
+.cta-services h2 {
+    font-family: 'Libre Baskerville', 400 Italic;
+    font-size: 26px;
+    font-weight: 400;
+    color: #720d04;
+    margin-bottom: 40px;
+    
+    /* MODIFICATIONS POUR UNE SEULE LIGNE */
+    max-width: none;      /* On enlève la limite de largeur */
+    white-space: nowrap;  /* Force le texte sur une seule ligne */
+    width: 100%;
+}
+/* Conteneur des boutons */
+.cta-buttons {
+    display: flex;
+    justify-content: center; /* Centre les boutons horizontalement */
+    align-items: center;     /* Aligne les boutons verticalement si hauteurs différentes */
+    gap: 24px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.cta-btn {
+    display: inline-block;
+    padding: 14px 28px;
+    border: 1px solid #720d04;
+    border-radius: 40px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: #720d04;
+    transition: all 0.3s ease;
+    white-space: nowrap; /* Évite que le texte du bouton ne saute à la ligne */
+}
+
+/* Hover élégant */
+.cta-btn:hover {
+    background-color: #720d04;
+    color: #ffffff;
+}
+/* Pour éviter que ça dépasse sur les petits écrans mobiles */
+@media (max-width: 768px) {
+    .cta-services h2 {
+        white-space: normal; /* Sur mobile, on autorise le retour à la ligne sinon ça dépasse */
+        font-size: 22px;
+        padding: 0 20px;
+    }
+}
+/* ================= À PROPOS ================= */
+.about-section {
+    width: 100%;
+    padding: 40px 2cm 60px;
+    background-color: #ffffff;
+}
+
+.about-container {
+    max-width: 1270px;
+    margin: 0 auto;
+}
+.about-top {
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+    margin-top: 0;      /* Aligne le haut du conteneur */
+    margin-bottom: 5px;
+}
+.about-text {
+    max-width: 700px; /* texte plus étroit */
+}
+
+.about-text {
+  flex: 1;
+  text-align: left;
+  font-family: 'Libre Baskerville', 400 Italic;
+  font-size: 21px;
+}
+
+.about-text .intro-title {
+    font-family: 'Libre Baskerville', 400 Italic;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 1.4;
+    color: #720d04;
+    margin-top: 0;      /* Assure qu'il n'y a pas d'espace parasite vers le haut */
+    margin-bottom: 20px;
+}
+
+/* Photo plus grande et carrée */
+.about-image {
+  flex: 0 0 510px;        /* largeur fixe plus grande */
+  height: 510px;          /* même hauteur pour carré */
+  overflow: hidden;       /* pour couper le surplus si nécessaire */
+}
+
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* garde le carré en centrant l’image */
+  border-radius: 4px;
+}
+
+.highlight-bold { color: #a193e1; font-weight: 700; }
+
+/* Responsive : sur mobile, on empile l’image et le texte */
+@media (max-width: 768px) {
+  .about-top {
+    flex-direction: column-reverse;
+    gap: 30px;
+    text-align: left;
+  }
+
+  .about-image {
+    flex: 1 1 auto;
+    height: auto;
+  }
+}
+.about-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.about-actions .cta-btn {
+    flex: 1 1 220px; /* chaque bouton prend la même largeur minimale */
+}
+
+/* ================= FAQ (Harmonisée) ================= */
+.faq-section {
+    background-color: #e3dff6; /* couleur douce pour le bloc FAQ */
+    width: 100%;
+    margin-top: 80px;
+    padding: 40px 2cm; /* Ajouté : espace autour du contenu pour que le fond soit visible */
+    border-radius: 8px; /* coins légèrement arrondis pour un effet plus doux */
+    text-align: left;
+}
+
+.faq-intro h3 {
+    font-family: 'Libre Baskerville', 400 Italic;
+    font-weight: 400;
+    font-size: 24px;                        /* poids */
+    margin-bottom: 5px;
+    color: #720d04;
+}
+
+.faq-intro p {
+    font-family: 'Libre Baskerville', 400 Italic;
+    font-weight: 400;
+    font-size: 32px;
+    color: #720d04;
+    margin-bottom: 40px;
+} 
+
+.faq-list {
+    width: 100%;
+    max-width: 900px; /* On limite un peu pour que les lignes ne soient pas trop longues */
+}
+
+.faq-item {
+    border-bottom: 1px solid rgba(165, 42, 42, 0.15);
+    padding: 20px 0;
+    width: 100%;
+}
+
+.faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    color: #720d04;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Retrait de la petite flèche par défaut sur Safari/Chrome */
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+/* Flèche fine style accordéon */
+.faq-item summary::after {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    /* Flèche en SVG : pointe vers le bas */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9l6 6 6-6' stroke='%236034d8db' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: transform 0.3s ease;
+    margin-left: 12px;
+}
+
+/* Quand la question est ouverte, la flèche pivote */
+.faq-item[open] summary::after {
+    transform: rotate(180deg);
+}
+
+.faq-content {
+    padding-top: 15px;
+    color: #8876d6;
+    font-size: 17px;
+    line-height: 1.6;
+}
+/* ================= FAQ Footer ================= */
+.faq-footer {
+    margin-top: 30px;
+    text-align: left;        /* tout calé à gauche */
+    font-size: 17px;
+    color: #720d04;
+}
+
+.faq-footer a {
+    position: relative;
+    color: #8876d6;
+    text-decoration: none;  /* on supprime le soulignement classique */
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+/* Ligne qui glisse */
+.faq-footer a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;           /* légèrement en dessous du texte */
+    width: 0%;
+    height: 1px;            /* épaisseur de la ligne */
+    background-color: #8876d6; 
+    transition: width 0.3s ease;
+}
+
+.faq-footer a:hover::after {
+    width: 100%;            /* la ligne s’étend complètement au survol */
+}
+
+.faq-footer a:hover {
+    color: #b7afd9;       /* couleur du texte au survol (optionnel) */
+}
+#faq {
+    scroll-margin-top: 100px; /* Crée une petite marge au-dessus quand on scrolle vers lui */
+}
+.form-success {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #b7afd9;
+    animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+/* ================= CONTACT PAGE ================= */
+.contact-section {
+    width: 100%;
+    /* On garde tes marges de 2cm pour l'alignement global */
+    padding: 40px 2cm 30px; 
+    background-color:  #e3dff6;
+    box-sizing: border-box;
+}
+
+.contact-container {
+    /* On passe en Grid pour un contrôle total des largeurs */
+    display: grid;
+    /* 1fr pour le texte, 1.2fr pour le formulaire (plus large) */
+    grid-template-columns: 1fr 1.2fr; 
+    gap: 80px; /* Espace entre les deux colonnes */
+    max-width: 1270px; 
+    margin: 0 auto;
+    align-items: start;
+}
+
+.contact-left {
+    width: 100%;
+}
+
+.contact-left h1 {
+    font-family: 'Libre Baskerville', 400 Italic;
+    font-weight: 400;
+    font-size:  32px;
+    color: #720d04 ;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* Typographie alignée sur "À Propos" */
+.contact-left p {
+    font-family: 'Libre Baskerville', 400 Italic;
+    font-size: 21px;
+    line-height: 1.4;
+    color:#8b78e0;
+    margin-bottom: 25px;
+}
+
+.contact-image {
+  width: 410px;
+  height: 410px;
+  object-fit: cover;
+  border-radius: 32px;
+  margin-top: 24px;
+  padding: 5px; 
+}
+.bouquet-wrapper {
+    display: block;
+    margin-top: 1px;
+}
+
+.bouquet-text {
+    font-family: 'Ferionapi-main', sans-serif;
+    font-size: 32px !important;
+    color: #720d04 !important;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.contact-right {
+    background-color:#ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Style des champs du formulaire */
+.contact-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #720d04;
+    font-size: 15px;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(165, 42, 42, 0.2);
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: 'Libre Baskerville', 400 Italic;
+}
+
+/* ---------------- NOTE BAS DE FORMULAIRE ---------------- */
+.contact-note {
+    margin-top: 15px;
+    font-size: 14px;
+    /* On met tout le texte de la phrase en rouge */
+    color: #720d04; 
+    line-height: 1.5;
+    font-family: "DM Sans", sans-serif;
+}
+
+.contact-note a {
+    /* On force la couleur des liens en rouge aussi */
+    color: #720d04; 
+    /* On ajoute le soulignement */
+    text-decoration: underline; 
+    font-weight: 500; /* Optionnel : les met très légèrement en gras pour qu'ils ressortent */
+}
+
+/* Petit effet quand on passe la souris dessus (optionnel) */
+.contact-note a:hover {
+    opacity: 0.7;
+}
+
+/* Responsive : On empile sur mobile */
+@media (max-width: 900px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .contact-section {
+        padding: 40px 20px 80px;
+    }
+}
+
+/* ================= MODALE PROJET ================= */
+
+.project-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 9999;
+}
+
+.project-modal.active {
+  display: block;
+}
+
+.project-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(101, 100, 100, 0.818);
+}
+
+/* CONTENU MODALE */
+.project-modal-content {
+    position: relative;
+    max-width: 1190px;
+    max-height: 92vh;
+    margin: 5vh auto;
+    background: #ffffff;
+    /* On passe le padding haut de 30px à 20px */
+    padding: 20px 40px 40px 40px; 
+    overflow: hidden;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* BOUTON FERMER */
+.project-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #720d04;
+}
+
+/* ================= CONTENEUR INTERNE ================= */
+.project-modal-inner {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0;       /* supprime le padding inutile en haut */
+}
+
+/* ================= TEXTE DU PROJET ================= */
+
+.project-info-grid {
+    display: flex;
+    /* On remonte un peu le gap à 45px (compromis entre 30 et 60) */
+    gap: 45px; 
+    align-items: flex-start;
+    margin-top: 5px; 
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.project-left {
+    flex: 0 0 300px; /* On fixe une largeur stable pour le titre */
+    display: flex;
+    flex-direction: column;
+}
+
+/* 3. Colonne de droite (Description) */
+.project-right {
+    flex: 1;
+    /* On ajoute une marge à droite pour que le texte ne touche pas le bord */
+    padding-right: 60px; 
+}
+
+.project-modal-title {
+    font-size: 26px;
+    font-weight: 500;
+    color: #720d04;
+    margin: 0; 
+    line-height: 1.1;
+}
+
+.project-meta {
+    font-size: 16px;
+    color: #8876d6;
+    margin-top: 8px;
+}
+
+.project-modal-description {
+    font-family: ' Libre Baskerville ', 400 Italic; 
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.4;
+    color:  #720d04;                      
+    margin: 0;
+    padding-top: 5px; 
+}
+.project-modal-description strong {
+    font-weight: 550;
+}
+
+/* SLIDER HORIZONTAL */
+.project-slider {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 20px;
+}
+
+.project-slider::-webkit-scrollbar {
+  height: 6px;
+}
+
+.project-slider::-webkit-scrollbar-thumb {
+  background: rgba(165, 42, 42, 0.3);
+  border-radius: 4px;
+}
+
+.project-slider img {
+  flex: 0 0 auto;
+  height: 580px; /* même hauteur pour toutes les images */
+  object-fit: cover;
+  scroll-snap-align: start;
+  border-radius: 4px;
+}
+.project-modal-description a {
+    color: inherit;       /* prend la couleur du texte de la modale */
+    text-decoration: none; /* supprime le souligné */
+    font-weight: 800; 
+}
+
+.project-modal-description a:hover {
+    text-decoration: underline; /* optionnel : souligné au survol */
+}
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .project-modal-content {
+    padding: 20px;
+    margin: 5vh 20px;
+  }
+
+  .project-info-grid {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .project-left {
+    flex: 1;
+  }
+
+  .project-slider img {
+    height: 250px;
+  }
+}
