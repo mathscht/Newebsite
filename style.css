@@ -135,47 +135,77 @@ body {
 /* ================= NAVBAR MOBILE ================= */
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column;  /* logo en haut, menu en dessous */
+        flex-direction: column; /* empile verticalement */
         align-items: flex-start;
         padding: 12px 16px;
+        border-bottom: 1px solid #720d04;
     }
 
+    /* Logo */
     .logo-container {
-        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
     }
 
     .logo-img {
         height: 40px;
+        width: auto;
     }
 
     .logo-text {
         font-size: 16px;
+        font-weight: 500;
     }
 
+    /* Menu principal */
     .nav-links {
-        width: 100%; /* prendre toute la largeur */
+        width: 100%;
     }
 
     .nav-links ul {
-        flex-direction: column; /* empiler les liens */
-        gap: 8px;
+        display: flex;
+        flex-direction: column; /* empile les liens */
+        gap: 8px; /* espace entre les liens */
+        padding-left: 0;
+        margin: 0;
+        width: 100%;
     }
 
     .nav-links a {
         font-size: 14px;
-        padding: 6px 0;
+        padding: 8px 0;
+        width: 100%;
+        color: #720d04;
+        text-decoration: none;
     }
 
+    .nav-links > ul > li > a::after {
+        display: none; /* supprime le hover underline */
+    }
+
+    /* Bouton Me contacter */
     .right-menu {
         width: 100%;
-        margin-top: 8px;
+        margin-top: 12px;
     }
 
     .right-menu .nav-link {
-        width: 100%; /* le bouton prend toute la largeur */
+        display: block;
+        width: 100%;
         text-align: center;
+        padding: 10px 0;
         font-size: 14px;
-        padding: 8px 0;
+        border-radius: 4px;
+        border: 1px solid #720d04;
+        background-color: #fff;
+        transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .right-menu .nav-link:hover {
+        background-color: #cfb8e98d;
+        color: #720d04;
     }
 }
 /* ================= SECTIONS ================= */
