@@ -132,16 +132,17 @@ body {
 .right-menu .nav-link::after {
     content: none;
 }
-/* Cacher le menu desktop sur mobile */
+/* ========== MENU RESPONSIVE ========== */
 @media (max-width: 768px) {
+    /* Cache le menu classique sur mobile */
     .nav-links {
-        display: none; /* on cache le menu classique */
+        display: none !important;
     }
 
+    /* Affiche le menu déroulant */
     .mobile-menu {
         display: block;
-        width: auto;
-        margin-left: auto; /* pousse à droite */
+        margin-left: auto; /* pousse à droite du logo */
     }
 
     .mobile-menu details {
@@ -188,6 +189,13 @@ body {
 
     .mobile-menu a:hover {
         background-color: #cfb8e98d;
+    }
+}
+
+/* Cache le menu mobile sur PC */
+@media (min-width: 769px) {
+    .mobile-menu {
+        display: none;
     }
 }
 /* ================= SECTIONS ================= */
