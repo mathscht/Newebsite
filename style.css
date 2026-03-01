@@ -132,44 +132,50 @@ body {
 .right-menu .nav-link::after {
     content: none;
 }
-/* ================= NAVBAR MOBILE - VERSION HORIZONTAL SCROLL ================= */
+/* ================= NAVBAR MOBILE ================= */
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: row; /* garder tout sur la même ligne */
-        justify-content: space-between;
-        align-items: center;
-        padding: 8px 12px;
+        flex-direction: column;  /* logo en haut, menu en dessous */
+        align-items: flex-start;
+        padding: 12px 16px;
+    }
+
+    .logo-container {
+        margin-bottom: 8px;
     }
 
     .logo-img {
-        height: 36px;
+        height: 40px;
     }
 
     .logo-text {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .nav-links {
-        overflow-x: auto; /* autorise le scroll horizontal si trop large */
-        -webkit-overflow-scrolling: touch; /* pour mobile */
+        width: 100%; /* prendre toute la largeur */
     }
 
     .nav-links ul {
-        display: flex;
-        gap: 12px; /* réduire l’espace entre les liens */
-        white-space: nowrap; /* empêche le retour à la ligne */
-        padding: 0;
-        margin: 0;
+        flex-direction: column; /* empiler les liens */
+        gap: 8px;
     }
 
     .nav-links a {
-        font-size: 13px;
-        padding: 4px 6px;
+        font-size: 14px;
+        padding: 6px 0;
+    }
+
+    .right-menu {
+        width: 100%;
+        margin-top: 8px;
     }
 
     .right-menu .nav-link {
-        font-size: 13px;
-        padding: 3px 8px;
+        width: 100%; /* le bouton prend toute la largeur */
+        text-align: center;
+        font-size: 14px;
+        padding: 8px 0;
     }
 }
 /* ================= SECTIONS ================= */
