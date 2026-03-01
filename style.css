@@ -41,11 +41,35 @@ body {
     background-color: #ffffff;
     z-index: 100;
 }
-
-/* Menu classique PC */
 .nav-links {
-    display: flex;
-    gap: 56px;
+  display: flex;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center; /* aligne verticalement */
+  gap: 10px; /* espace entre logo et texte */
+  text-decoration: none; /* supprime le soulignement du lien */
+  color: inherit;        /* garde la couleur du texte */
+}
+.logo-container:hover {
+    opacity: 0.8; /* optionnel : léger effet au survol */
+}
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* espace logo / texte */
+  text-decoration: none; /* enlève le soulignement */
+}
+.logo-img {
+  height: 50px;
+  width: auto;
+}
+
+.logo-text {
+  font-size: 18px;
+  font-weight: 500;
+  color: #720d04;
 }
 
 .nav-links ul {
@@ -61,6 +85,7 @@ body {
     text-decoration: none;
     position: relative;
     padding-bottom: 2px;
+    letter-spacing: 0.02em;
 }
 
 .nav-links > ul > li > a::after {
@@ -78,22 +103,23 @@ body {
     width: 100%;
 }
 
-/* Bouton Me contacter */
 .right-menu {
     display: flex;
     align-items: center;
     gap: 16px;
 }
 
+/* Bouton encadré pour Me contacter */
 .right-menu .nav-link {
     font-size: 18px;
     font-weight: 500;
     color: #720d04;
     text-decoration: none;
     padding: 6px 16px;
-    border: 1px solid #720d04;
-    border-radius: 4px;
+    border: 1px solid #720d04;   /* encadré */
+    border-radius: 4px;           /* coins arrondis */
     transition: background-color 0.25s ease, color 0.25s ease;
+    position: relative;
 }
 
 /* Hover : fond légèrement coloré */
@@ -102,77 +128,11 @@ body {
     color: #720d04;
 }
 
-/* ================= MENU MOBILE ================= */
-.mobile-menu {
-    display: none; /* caché par défaut */
+/* Supprime le soulignement hover de la nav normale pour ce bouton */
+.right-menu .nav-link::after {
+    content: none;
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    /* Masque le menu classique sur mobile */
-    .nav-links {
-        display: none !important;
-    }
-
-    /* Affiche le menu mobile */
-    .mobile-menu {
-        display: block;
-        margin-left: auto;
-    }
-
-    .mobile-menu details {
-        cursor: pointer;
-        font-size: 16px;
-    }
-
-    .mobile-menu summary {
-        list-style: none;
-        padding: 8px 12px;
-        border: 1px solid #720d04;
-        border-radius: 4px;
-        background-color: #fff;
-        color: #720d04;
-    }
-
-    .mobile-menu summary:hover {
-        background-color: #cfb8e98d;
-    }
-
-    .mobile-menu ul {
-        padding-left: 0;
-        margin: 8px 0 0 0;
-        border: 1px solid #720d04;
-        border-radius: 4px;
-        background-color: #fff;
-    }
-
-    .mobile-menu li {
-        list-style: none;
-        padding: 8px 12px;
-        border-bottom: 1px solid #720d04;
-    }
-
-    .mobile-menu li:last-child {
-        border-bottom: none;
-    }
-
-    .mobile-menu a {
-        text-decoration: none;
-        color: #720d04;
-        display: block;
-    }
-
-    .mobile-menu a:hover {
-        background-color: #cfb8e98d;
-    }
-}
-
-/* Cache le menu mobile sur PC */
-@media (min-width: 769px) {
-    .mobile-menu {
-        display: none;
-    }
-}
 /* ================= SECTIONS ================= */
 /* Par défaut, on cache toutes les sections */
 .page-section {
