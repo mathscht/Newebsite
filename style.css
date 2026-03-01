@@ -71,25 +71,56 @@ html, body {
 .logo-text { font-size: 18px; font-weight: 500; color: #720d04; }
 
 /* Menu PC */
+/* ================= MENU PC COMPLET (ALIGNEMENT + TYPO + SOULIGNEMENT) ================= */
+
+/* 1. Aligner les liens horizontalement */
 .nav-links ul {
-    display: flex;
-    gap: 56px;
-    list-style: none;
+    display: flex;         /* Met les éléments côte à côte */
+    gap: 56px;             /* Espace entre chaque mot */
+    list-style: none;      /* Enlève les points de liste */
+    margin: 0;
+    padding: 0;
 }
 
-.nav-links a, .right-menu a {
+/* 2. Typo et position relative pour le trait */
+.nav-links a, 
+.right-menu a {
     text-decoration: none;
     color: #720d04;
     font-weight: 500;
+    font-size: 18px;
+    position: relative;
+    display: inline-block; /* Pour que le soulignement s'aligne bien */
 }
 
+/* 3. Création du trait de soulignement (caché au départ) */
+.nav-links ul li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 1px;
+    background-color: #720d04;
+    transition: width 0.25s ease;
+}
+
+/* 4. Animation du trait au survol */
+.nav-links ul li a:hover::after {
+    width: 100%;
+}
+
+/* 5. Design du bouton "Me contacter" */
 .right-menu .nav-link {
-    padding: 6px 16px;
+    padding: 8px 18px;
     border: 1px solid #720d04;
     border-radius: 4px;
-    transition: 0.25s;
+    transition: background-color 0.25s ease;
 }
 
+.right-menu .nav-link:hover {
+    background-color: #cfb8e98d;
+}
 /* ================= MENU MOBILE (BURGER) ================= */
 .mobile-menu {
     display: none; /* Caché sur PC */
@@ -918,12 +949,12 @@ html, body {
 }
 
 .contact-image {
-  width: 410px;
-  height: 410px;
-  object-fit: cover;
-  border-radius: 32px;
-  margin-top: 24px;
-  padding: 5px; 
+    width: 100%;           /* S'adapte à la largeur du téléphone */
+    max-width: 410px;      /* Mais ne devient pas géante sur PC */
+    height: auto;          /* Garde les proportions */
+    object-fit: cover;
+    border-radius: 32px;
+    margin-top: 24px;
 }
 .bouquet-wrapper {
     display: block;
@@ -991,17 +1022,47 @@ html, body {
     opacity: 0.7;
 }
 
-/* Responsive : On empile sur mobile */
+/* ================= RESPONSIVE CONTACT ================= */
+
 @media (max-width: 900px) {
     .contact-container {
-        grid-template-columns: 1fr;
-        gap: 40px;
+        grid-template-columns: 1fr; /* On empile les colonnes */
+        gap: 30px;
+        width: 100%;
+        margin: 0 auto;
     }
+
     .contact-section {
-        padding: 40px 20px 80px;
+        padding: 40px 20px; /* On remplace les 2cm par 20px pour gagner de la place */
+    }
+
+    /* On réduit la taille des textes pour mobile */
+    .contact-left h1 {
+        font-size: 26px; /* Plus petit que les 32px du PC */
+        text-align: center; /* On centre le titre pour le mobile */
+    }
+
+    .contact-left p {
+        font-size: 18px; /* Plus petit que les 21px */
+        text-align: center;
+    }
+
+    .bouquet-text {
+        font-size: 24px !important; /* On réduit le texte Ferionapi */
+        text-align: center;
+    }
+
+    .contact-image {
+        margin: 20px auto; /* Centre l'image horizontalement */
+        display: block;
+    }
+
+    /* On réduit un peu le padding interne du formulaire pour gagner de la place */
+    .contact-right {
+        padding: 25px 20px;
+        width: 100%;
     }
 }
-
 /* ================= MODALE PROJET ================= */
 
 .project-modal {
