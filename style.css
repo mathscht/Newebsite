@@ -1056,7 +1056,16 @@ html, body {
         font-size: 16px !important;
         text-align: left !important;
     }
+    .bouquet-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 
+.bouquet-text {
+    font-size: 22px !important;
+    text-align: center !important;
+}
     /* On centre le formulaire */
     .contact-right {
         width: 100% !important;
