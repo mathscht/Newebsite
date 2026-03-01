@@ -1141,3 +1141,143 @@ body {
     height: 250px;
   }
 }
+/* =========================
+   MOBILE FIRST / RESPONSIVE
+========================= */
+
+/* Petite taille d'écran : max-width 768px */
+@media (max-width: 768px) {
+
+    /* NAVBAR */
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+    }
+
+    .logo-container {
+        margin-bottom: 1rem;
+    }
+
+    .nav-links ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-links li {
+        margin-bottom: 0.5rem;
+    }
+
+    .right-menu {
+        margin-top: 1rem;
+    }
+
+    /* SECTIONS */
+    .page-section {
+        padding: 1rem;
+    }
+
+    /* PROJECT GRID */
+    .projects-grid {
+        display: grid;
+        grid-template-columns: 1fr; /* une colonne sur mobile */
+        gap: 1rem;
+    }
+
+    .project-item {
+        flex-direction: column;
+    }
+
+    .project-img img {
+        width: 100%;
+        height: auto;
+    }
+
+    .project-text {
+        text-align: left;
+        padding: 0.5rem 0;
+    }
+
+    /* SERVICES */
+    .services-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .service-card {
+        text-align: left;
+    }
+
+    /* PROCESS SECTION */
+    .process-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .process-step {
+        padding-left: 0;
+    }
+
+    .connection-line {
+        display: none;
+    }
+
+    /* ABOUT SECTION */
+    .about-top {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .about-image img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* CTA */
+    .cta-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    /* FAQ */
+    .faq-list {
+        gap: 1rem;
+    }
+
+    /* CONTACT */
+    .contact-container {
+        flex-direction: column;
+    }
+
+    .contact-left, .contact-right {
+        width: 100%;
+    }
+
+    .contact-image {
+        width: 100%;
+        height: auto;
+        margin: 1rem 0;
+    }
+
+    /* MODALE PROJET */
+    .project-modal-content {
+        width: 95%;
+        margin: 1rem auto;
+    }
+
+    .project-info-grid {
+        flex-direction: column;
+    }
+
+    .project-left, .project-right {
+        width: 100%;
+    }
+
+    .project-slider img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 0.5rem;
+    }
+}
