@@ -141,4 +141,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // BURGER MENU MOBILE
+const burger = document.querySelector(".burger-menu");
+const navLinks = document.querySelector(".nav-links");
+
+burger.addEventListener("click", () => {
+    navLinks.classList.toggle("show");
+});
+
 });
