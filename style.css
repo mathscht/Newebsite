@@ -1224,3 +1224,8 @@ html, body {
     height: 250px;
   }
 }
+@media (max-width: 900px) {
+    body {
+        background-color: red !important;
+    }
+}
