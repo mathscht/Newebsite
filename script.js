@@ -1,144 +1,168 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-  /* ================= NAVIGATION ================= */
-  const links = document.querySelectorAll(".nav-link");
-  const sections = document.querySelectorAll(".page-section");
-  const ctaServices = document.getElementById("cta-services");
-  const process = document.getElementById("process");
+    /* ================= 1. VARIABLES GLOBALES ================= */
+    const sections = document.querySelectorAll(".page-section");
+    const links = document.querySelectorAll(".nav-link");
+    const ctaServices = document.getElementById("cta-services");
+    const process = document.getElementById("process");
+    const projectModal = document.getElementById("projectModal");
 
-  links.forEach(link => {
-    link.addEventListener("click", function (e) {
-      e.preventDefault();
+    /* ================= 2. FONCTION DE NAVIGATION ================= */
+    function switchSection(targetId, scrollTargetId = null) {
+        if (!targetId) return;
 
-      const targetId = this.getAttribute("data-section"); // ex: "contact" ou "apropos"
-      const scrollTarget = this.getAttribute("data-scroll"); // ex: "faq"
+        // A. Masquer toutes les sections et éléments liés
+        sections.forEach(sec => sec.classList.remove("active"));
+        if (ctaServices) ctaServices.classList.remove("active");
+        if (process) process.classList.remove("active");
 
-      if (!targetId) return;
+        // B. Afficher la section cible
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+            targetSection.classList.add("active");
 
-      // 1. Masquer toutes les sections principales (mais pas les sous-sections fixes)
-      sections.forEach(sec => sec.classList.remove("active"));
-      if (ctaServices) ctaServices.classList.remove("active");
-      if (process) process.classList.remove("active");
+            // Affichage spécial pour la page Services
+            if (targetId === "services") {
+                if (process) process.classList.add("active");
+                if (ctaServices) ctaServices.classList.add("active");
+            }
 
-      // 2. Afficher la section cible
-      const targetSection = document.getElementById(targetId);
-      if (targetSection) {
-        targetSection.classList.add("active");
+            // C. Mettre à jour l'URL sans recharger
+            window.history.pushState(null, null, `#${targetId}`);
 
-        // CAS SERVICES : afficher aussi process + CTA
-        if (targetId === "services") {
-          if (process) process.classList.add("active");
-          if (ctaServices) ctaServices.classList.add("active");
+            // D. Gestion du Scroll
+            setTimeout(() => {
+                if (scrollTargetId) {
+                    const el = document.getElementById(scrollTargetId);
+                    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                } else {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                }
+            }, 100);
         }
-      }
+    }
 
-      // 3. Scroll vers une ancre spécifique (ex: FAQ)
-      setTimeout(() => {
-        if (scrollTarget) {
-          const el = document.getElementById(scrollTarget);
-          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-        } else {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }
-      }, 50);
-    });
-  });
+    /* ================= 3. ÉCOUTEURS D'ÉVÉNEMENTS ================= */
 
-  /* ================= ACCORDÉONS ================= */
-  function accordionAutoClose(selector) {
-    const items = document.querySelectorAll(selector);
-    items.forEach(item => {
-      item.addEventListener("toggle", () => {
-        if (item.open) {
-          items.forEach(other => {
-            if (other !== item) other.removeAttribute("open");
-          });
-        }
-      });
-    });
-  }
+    // Clic sur les liens du menu
+    links.forEach(link => {
+        link.addEventListener("click", function (e) {
+            const targetId = this.getAttribute("data-section");
+            const scrollTargetId = this.getAttribute("data-scroll");
 
-  accordionAutoClose(".service-details");
-  accordionAutoClose(".faq-item");
-
-  /* ================= FORMULAIRE CONTACT (AJAX) ================= */
-  const contactForm = document.querySelector(".contact-form");
-  const successMessage = document.querySelector(".form-success");
-
-  if (contactForm) {
-    contactForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const formData = new FormData(contactForm);
-
-      fetch(contactForm.action, {
-        method: contactForm.method,
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      })
-      .then(response => {
-        if (response.ok) {
-          contactForm.reset();
-          if (successMessage) successMessage.style.display = "block";
-        } else {
-          alert("Une erreur est survenue. Réessaie plus tard.");
-        }
-      })
-      .catch(() => {
-        alert("Erreur de connexion. Vérifie ta connexion internet.");
-      });
-    });
-  }
-
-  /* ================= MODALE PROJETS ================= */
-  const projectModal = document.getElementById("projectModal");
-  const modalOverlay = projectModal?.querySelector(".project-modal-overlay");
-  const modalClose = projectModal?.querySelector(".project-modal-close");
-  const modalTitle = projectModal?.querySelector(".project-modal-title");
-  const modalMeta = projectModal?.querySelector(".project-meta");
-  const modalDesc = projectModal?.querySelector(".project-modal-description");
-  const modalSlider = projectModal?.querySelector(".project-slider");
-
-  document.querySelectorAll(".project-item").forEach(project => {
-    project.addEventListener("click", () => {
-      // Injecter contenu
-      if (modalTitle) modalTitle.textContent = project.dataset.title || "";
-      if (modalMeta) modalMeta.textContent = project.dataset.meta || "";
-      if (modalDesc) modalDesc.innerHTML = project.dataset.description || "";
-
-      // Injecter images
-      if (modalSlider) {
-        modalSlider.innerHTML = "";
-        project.dataset.images?.split(",").forEach(src => {
-          const img = document.createElement("img");
-          img.src = src;
-          modalSlider.appendChild(img);
+            if (targetId) {
+                e.preventDefault();
+                switchSection(targetId, scrollTargetId);
+            }
         });
-      }
-
-      // Afficher modale
-      if (projectModal) {
-        projectModal.style.display = "block";
-        projectModal.classList.add("active");
-        document.body.style.overflow = "hidden";
-      }
     });
-  });
 
-  function closeProjectModal() {
+    // Gestion du chargement initial / Refresh
+    const currentHash = window.location.hash.replace('#', '');
+    if (currentHash) {
+        switchSection(currentHash);
+    } else {
+        switchSection('realisations'); // Page par défaut
+    }
+
+    /* ================= 4. ACCORDÉONS (Services & FAQ) ================= */
+    function initAccordions(selector) {
+        const items = document.querySelectorAll(selector);
+        items.forEach(item => {
+            item.addEventListener("toggle", () => {
+                if (item.open) {
+                    items.forEach(other => {
+                        if (other !== item) other.removeAttribute("open");
+                    });
+                }
+            });
+        });
+    }
+    initAccordions(".service-details");
+    initAccordions(".faq-item");
+
+    /* ================= 5. MODALE PROJETS ================= */
     if (projectModal) {
-      projectModal.style.display = "none";
-      projectModal.classList.remove("active");
-      document.body.style.overflow = "";
-    }
-  }
+        const modalTitle = projectModal.querySelector(".project-modal-title");
+        const modalMeta = projectModal.querySelector(".project-meta");
+        const modalDesc = projectModal.querySelector(".project-modal-description");
+        const modalSlider = projectModal.querySelector(".project-slider");
+        const modalClose = projectModal.querySelector(".project-modal-close");
+        const modalOverlay = projectModal.querySelector(".project-modal-overlay");
 
-  modalClose?.addEventListener("click", closeProjectModal);
-  modalOverlay?.addEventListener("click", closeProjectModal);
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && projectModal?.classList.contains("active")) {
-      closeProjectModal();
+        // Fonction de fermeture
+        const closeProjectModal = () => {
+            projectModal.classList.remove("active");
+            projectModal.style.display = "none";
+            document.body.style.overflow = ""; 
+        };
+
+        // Sélectionne tous les project-item
+        const projectItems = document.querySelectorAll(".project-item");
+        
+        projectItems.forEach(projectItem => {
+            projectItem.addEventListener("click", function(e) {
+                // On récupère les infos
+                const title = this.getAttribute("data-title") || "";
+                const meta = this.getAttribute("data-meta") || "";
+                const desc = this.getAttribute("data-description") || "";
+                const imagesStr = this.getAttribute("data-images") || "";
+
+                // On remplit la modale
+                if (modalTitle) modalTitle.textContent = title;
+                if (modalMeta) modalMeta.textContent = meta;
+                if (modalDesc) modalDesc.innerHTML = desc;
+
+                if (modalSlider) {
+                    modalSlider.innerHTML = ""; 
+                    if (imagesStr) {
+                        const imagesArray = imagesStr.split(",");
+                        imagesArray.forEach(src => {
+                            const img = document.createElement("img");
+                            img.src = src.trim();
+                            img.alt = title;
+                            modalSlider.appendChild(img);
+                        });
+                    }
+                }
+
+                // Affichage
+                projectModal.style.display = "block";
+                // Petit timeout pour laisser le temps au navigateur de voir le display block avant l'animation
+                setTimeout(() => {
+                    projectModal.classList.add("active");
+                }, 10);
+                
+                document.body.style.overflow = "hidden";
+            });
+        });
+
+        modalClose?.addEventListener("click", closeProjectModal);
+        modalOverlay?.addEventListener("click", closeProjectModal);
     }
-  });
-  
+    /* ================= 6. FORMULAIRE DE CONTACT (AJAX) ================= */
+    const contactForm = document.querySelector(".contact-form");
+    const successMessage = document.querySelector(".form-success");
+
+    if (contactForm) {
+        contactForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const formData = new FormData(contactForm);
+
+            fetch(contactForm.action, {
+                method: contactForm.method,
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(response => {
+                if (response.ok) {
+                    contactForm.reset();
+                    if (successMessage) successMessage.style.display = "block";
+                } else {
+                    alert("Une erreur est survenue. Réessaie plus tard.");
+                }
+            })
+            .catch(() => alert("Erreur de connexion."));
+        });
+    }
 });

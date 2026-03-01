@@ -586,7 +586,7 @@
                 <button type="submit" class="cta-btn">Envoyer</button>
 
 <p class="form-success" style="display:none;">
-    Merci pour votre message ✨  
+    Merci pour votre message!  
     Je reviens vers vous très vite.
 </p>
 
@@ -601,150 +601,10 @@
     <input type="hidden" name="_subject" value="Nouveau message depuis ton site">
 </footer>
 
+<script src="script.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-    /* ================= NAVIGATION & SCROLL ================= */
-    const links = document.querySelectorAll(".nav-link");
-    const sections = document.querySelectorAll(".page-section");
-
-    links.forEach(link => {
-        link.addEventListener("click", function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute("data-section");
-            const scrollTargetId = this.getAttribute("data-scroll");
-
-            if (!targetId) return;
-
-            sections.forEach(sec => sec.classList.remove("active"));
-            const targetSection = document.getElementById(targetId);
-            
-            if (targetSection) {
-                targetSection.classList.add("active");
-                if (targetId === "services") {
-                    document.getElementById("process")?.classList.add("active");
-                    document.getElementById("cta-services")?.classList.add("active");
-                }
-
-                if (scrollTargetId) {
-                    const elementToScroll = document.getElementById(scrollTargetId);
-                    if (elementToScroll) {
-                        setTimeout(() => {
-                            elementToScroll.scrollIntoView({ behavior: "smooth", block: "start" });
-                        }, 10);
-                    }
-                } else {
-                    window.scrollTo({ top: 0, behavior: "auto" });
-                }
-            }
-        });
-    });
-
-    /* ================= ACCORDÉONS ================= */
-    function makeAccordion(selector) {
-        const detailsList = document.querySelectorAll(selector);
-        detailsList.forEach(targetDetail => {
-            targetDetail.addEventListener("click", function () {
-                detailsList.forEach(detail => {
-                    if (detail !== targetDetail) detail.removeAttribute("open");
-                });
-            });
-        });
-    }
-    makeAccordion(".service-details");
-    makeAccordion(".faq-item");
-
-    /* ================= MODALE PROJETS DYNAMIQUE ================= */
-    const projectModal = document.getElementById("projectModal");
-    const modalTitle = projectModal.querySelector(".project-modal-title");
-    const modalMeta = projectModal.querySelector(".project-meta");
-    const modalDesc = projectModal.querySelector(".project-modal-description");
-    const modalSlider = projectModal.querySelector(".project-slider");
     
-    const modalOverlay = projectModal.querySelector(".project-modal-overlay");
-    const modalClose = projectModal.querySelector(".project-modal-close");
-
-    // On écoute le clic sur chaque "project-item"
-    document.querySelectorAll(".project-item").forEach(projectItem => {
-        projectItem.addEventListener("click", () => {
-            
-            // 1. Récupération des données du projet cliqué
-            const title = projectItem.getAttribute("data-title");
-            const meta = projectItem.getAttribute("data-meta");
-            const desc = projectItem.getAttribute("data-description");
-            const imagesStr = projectItem.getAttribute("data-images");
-
-            // 2. Injection dans la modale
-            modalTitle.textContent = title;
-            modalMeta.textContent = meta;
-            modalDesc.innerHTML = desc;
-
-            // 3. Gestion des images du slider
-            modalSlider.innerHTML = ""; // On vide les images précédentes
-            if (imagesStr) {
-                const imagesArray = imagesStr.split(","); // On coupe la liste par les virgules
-                imagesArray.forEach(src => {
-                    const img = document.createElement("img");
-                    img.src = src.trim();
-                    img.alt = title;
-                    modalSlider.appendChild(img);
-                });
-            }
-
-            // 4. Affichage de la modale
-            projectModal.classList.add("active");
-            document.body.style.overflow = "hidden"; // Empêche de scroller derrière
-        });
-    });
-
-    function closeProjectModal() {
-        projectModal.classList.remove("active");
-        document.body.style.overflow = "";
-    }
-
-    modalClose.addEventListener("click", closeProjectModal);
-    modalOverlay.addEventListener("click", closeProjectModal);
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closeProjectModal();
-    });
-});
-</script>
-<!-- MODALE PROJET -->
-<div class="project-modal" id="projectModal">
-  <div class="project-modal-overlay"></div>
-
-  <div class="project-modal-content">
-    <button class="project-modal-close" aria-label="Fermer">×</button>
-
-    <div class="project-modal-inner">
-
-      <!-- TEXTE EN DEUX COLONNES -->
-      <div class="project-info-grid">
-        <!-- COLONNE GAUCHE : titre + meta -->
-        <div class="project-left">
-          <h2 class="project-modal-title">Bye Bye Bike</h2>
-          <p class="project-meta">Édition · 2024</p>
-        </div>
-
-        <!-- COLONNE DROITE : description -->
-        <div class="project-right">
-          <p class="project-modal-description">
-            Projet éditorial autour de la mobilité douce et de la ville,
-            mêlant narration graphique et illustration. Objectif : raconter une histoire claire et impactante grâce au graphisme.
-          </p>
-        </div>
-      </div>
-
-      <!-- SLIDER IMAGES -->
-      <div class="project-slider">
-        <img src="Images/foufou.JPG" alt="">
-        <img src="Images/fourmis.JPG" alt="">
-        <img src="Images/Imagespdj.jpg" alt="">
-      </div>
-
-    </div>
-  </div>
-</div>
-<script>
     const burgerBtn = document.querySelector('.burger');
     const mobileMenu = document.querySelector('.mobile-links');
 
@@ -765,6 +625,35 @@
     document.addEventListener('click', () => {
         mobileMenu.classList.remove('active');
     });
+});
 </script>
+
+<!-- MODALE PROJETS -->
+<div id="projectModal" class="project-modal" style="display:none;">
+  <div class="project-modal-overlay"></div>
+  <div class="project-modal-content">
+    <div class="project-modal-inner">
+
+  <div class="project-info-grid">
+    <div class="project-left">
+      <h2 class="project-modal-title"></h2>
+      <p class="project-meta"></p>
+    </div>
+    <div class="project-right">
+      <div class="project-modal-description"></div>
+    </div>
+  </div>
+
+  <div class="project-slider"></div>
+
+</div>
+    <button class="project-modal-close">✕</button>
+    <h2 class="project-modal-title"></h2>
+    <p class="project-meta"></p>
+    <div class="project-modal-description"></div>
+    <div class="project-slider"></div>
+  </div>
+</div>
+
 </body>
 </html>

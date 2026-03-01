@@ -267,6 +267,13 @@ html, body {
     display: flex;
     flex-direction: column;
 }
+.project-item {
+    cursor: pointer; /* Transforme la souris en main */
+}
+
+.project-item * {
+    pointer-events: none; /* Empêche les images à l'intérieur de bloquer le clic sur le parent */
+}
 
 .project-img {
     width: 100%;
@@ -1253,7 +1260,7 @@ html, body {
 }
 
 .project-modal.active {
-  display: block;
+  display: block !important;
 }
 
 .project-modal-overlay {
@@ -1265,6 +1272,7 @@ html, body {
 /* CONTENU MODALE */
 .project-modal-content {
     position: relative;
+    z-index: 10; /* Ajoute cette ligne */
     max-width: 1190px;
     max-height: 92vh;
     margin: 5vh auto;
@@ -1309,7 +1317,7 @@ html, body {
 }
 
 .project-left {
-    flex: 0 0 300px; /* On fixe une largeur stable pour le titre */
+    flex: 0 0 200px; /* On fixe une largeur stable pour le titre */
     display: flex;
     flex-direction: column;
 }
@@ -1317,6 +1325,8 @@ html, body {
 /* 3. Colonne de droite (Description) */
 .project-right {
     flex: 1;
+    text-align: left; /* description justifiée à gauche */
+    padding-right: 30px;
     /* On ajoute une marge à droite pour que le texte ne touche pas le bord */
     padding-right: 60px; 
 }
