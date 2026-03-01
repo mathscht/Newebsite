@@ -132,18 +132,23 @@ body {
 .right-menu .nav-link::after {
     content: none;
 }
-/* ================= NAVBAR MOBILE SAFE ================= */
+/* ================= NAVBAR MOBILE (tous les téléphones) ================= */
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column; /* empile verticalement */
+        flex-direction: column !important; /* empile verticalement */
         align-items: flex-start;
         padding: 12px 16px;
+        border-bottom: 1px solid #720d04;
     }
 
     .logo-container {
         margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
     }
 
+    /* Menu principal empilé */
     .nav-links {
         display: block !important; /* forcer l’affichage vertical */
         width: 100%;
@@ -151,30 +156,31 @@ body {
     }
 
     .nav-links ul {
-        display: block !important; /* empile les liens verticalement */
+        display: block !important;
         padding-left: 0;
         margin: 0;
     }
 
     .nav-links li {
-        margin-bottom: 8px; /* espace entre les liens */
+        margin-bottom: 8px;
     }
 
     .nav-links a {
-        font-size: 14px;
-        padding: 8px 0;
+        font-size: 14px; /* taille réduite */
         display: block;
+        padding: 8px 0;
         color: #720d04;
         text-decoration: none;
     }
 
     .nav-links > ul > li > a::after {
-        display: none;
+        display: none; /* supprime le trait hover */
     }
 
+    /* Bouton Me contacter en plein largeur */
     .right-menu {
         width: 100%;
-        margin-top: 12px;
+        margin-top: 8px;
     }
 
     .right-menu .nav-link {
