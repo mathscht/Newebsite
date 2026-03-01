@@ -132,60 +132,46 @@ body {
 .right-menu .nav-link::after {
     content: none;
 }
-/* ================= NAVBAR MOBILE ================= */
+/* ================= NAVBAR MOBILE SAFE ================= */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column; /* empile verticalement */
         align-items: flex-start;
         padding: 12px 16px;
-        border-bottom: 1px solid #720d04;
     }
 
-    /* Logo */
     .logo-container {
-        display: flex;
-        align-items: center;
-        gap: 8px;
         margin-bottom: 12px;
     }
 
-    .logo-img {
-        height: 40px;
-        width: auto;
-    }
-
-    .logo-text {
-        font-size: 16px;
-        font-weight: 500;
-    }
-
-    /* Menu principal */
     .nav-links {
+        display: block !important; /* forcer l’affichage vertical */
         width: 100%;
+        margin-bottom: 12px;
     }
 
     .nav-links ul {
-        display: flex;
-        flex-direction: column; /* empile les liens */
-        gap: 8px; /* espace entre les liens */
+        display: block !important; /* empile les liens verticalement */
         padding-left: 0;
         margin: 0;
-        width: 100%;
+    }
+
+    .nav-links li {
+        margin-bottom: 8px; /* espace entre les liens */
     }
 
     .nav-links a {
         font-size: 14px;
         padding: 8px 0;
-        width: 100%;
+        display: block;
         color: #720d04;
         text-decoration: none;
     }
 
     .nav-links > ul > li > a::after {
-        display: none; /* supprime le hover underline */
+        display: none;
     }
 
-    /* Bouton Me contacter */
     .right-menu {
         width: 100%;
         margin-top: 12px;
@@ -197,10 +183,9 @@ body {
         text-align: center;
         padding: 10px 0;
         font-size: 14px;
-        border-radius: 4px;
         border: 1px solid #720d04;
+        border-radius: 4px;
         background-color: #fff;
-        transition: background-color 0.25s ease, color 0.25s ease;
     }
 
     .right-menu .nav-link:hover {
