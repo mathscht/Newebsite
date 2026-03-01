@@ -132,44 +132,38 @@ body {
 .right-menu .nav-link::after {
     content: none;
 }
-/* ================= NAVBAR MOBILE ================= */
+/* ================= NAVBAR MOBILE - VERSION COMPACTE ================= */
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 16px 20px;  /* padding plus petit */
+        flex-direction: row; /* garder logo + menu sur la même ligne */
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 16px; /* padding réduit */
     }
 
-    .logo-container {
-        margin-bottom: 12px;
+    .logo-img {
+        height: 40px; /* logo plus petit */
     }
 
-    .nav-links {
-        width: 100%;
-        flex-direction: column;
-        gap: 12px;
+    .logo-text {
+        font-size: 16px; /* texte logo plus petit */
     }
 
     .nav-links ul {
-        flex-direction: column;
-        gap: 12px;
+        gap: 16px; /* réduire l’espace entre les onglets */
     }
 
     .nav-links a {
-        font-size: 16px;  /* réduit la taille des liens */
-    }
-
-    .right-menu {
-        width: 100%;
-        display: flex;
-        justify-content: flex-start;
-        margin-top: 12px;
+        font-size: 14px; /* liens plus petits */
     }
 
     .right-menu .nav-link {
-        font-size: 16px;
-        padding: 6px 12px;
+        font-size: 14px;
+        padding: 4px 10px;
     }
+
+    /* si besoin, cacher certains éléments trop larges */
+    /* .nav-links { display: none; } pour un burger éventuel */
 }
 /* ================= SECTIONS ================= */
 /* Par défaut, on cache toutes les sections */
