@@ -1276,7 +1276,7 @@ html, body {
     margin: 5vh auto;
     background: #ffffff;
     /* On passe le padding haut de 30px à 20px */
-    padding: 20px 40px 15px 40px; 
+    padding: 20px 40px 60px 40px; 
     overflow: hidden;
     border-radius: 8px;
     display: flex;
@@ -1453,5 +1453,8 @@ html, body {
 
   .project-slider img {
     height: 250px;
+  }
+  .slider-arrow {
+    display: none !important;
   }
 }
