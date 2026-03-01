@@ -165,4 +165,19 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(() => alert("Erreur de connexion."));
         });
     }
+  document.querySelectorAll('.project-modal').forEach(modal => {
+  const slider = modal.querySelector('.project-slider');
+  const btnLeft = modal.querySelector('.slider-arrow.left');
+  const btnRight = modal.querySelector('.slider-arrow.right');
+
+  if (!slider || !btnLeft || !btnRight) return;
+
+  btnLeft.addEventListener('click', () => {
+    slider.scrollBy({ left: -slider.clientWidth, behavior: 'smooth' });
+  });
+
+  btnRight.addEventListener('click', () => {
+    slider.scrollBy({ left: slider.clientWidth, behavior: 'smooth' });
+  });
+});
 });

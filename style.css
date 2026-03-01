@@ -1282,7 +1282,50 @@ html, body {
     display: flex;
     flex-direction: column;
 }
+/* ================= FLÈCHES MODERNE ================= */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #d0c8f7e0; /* couleur brun foncé semi-transparente */
+  color: #ffffff;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 28px;
+  cursor: pointer;
+  opacity: 0; /* invisible par défaut */
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  pointer-events: auto;
+}
 
+/* Position gauche / droite */
+.slider-arrow.left {
+  left: 15px;
+}
+
+.slider-arrow.right {
+  right: 15px;
+}
+
+/* Quand on survole la modale, les flèches apparaissent */
+.project-modal-content:hover .slider-arrow {
+  opacity: 1;
+}
+
+/* Effet de hover sur la flèche */
+.slider-arrow:hover {
+  background-color: #8776d66e; /* un peu plus foncé */
+  transform: translateY(-50%) scale(1.1); /* léger zoom */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+/* Optionnel : remplacer ‹ › par icônes SVG plus modernes */
 /* BOUTON FERMER */
 .project-modal-close {
   position: absolute;
