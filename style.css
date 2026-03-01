@@ -1049,12 +1049,12 @@ html, body {
     /* On réduit les textes */
     .contact-left h1, .bouquet-text {
         font-size: 22px !important;
-        text-align: center !important;
+        text-align: left !important;
     }
 
     .contact-left p {
         font-size: 16px !important;
-        text-align: center !important;
+        text-align: left !important;
     }
 
     /* On centre le formulaire */
@@ -1223,9 +1223,4 @@ html, body {
   .project-slider img {
     height: 250px;
   }
-}
-@media (max-width: 900px) {
-    body {
-        background-color: red !important;
-    }
 }
