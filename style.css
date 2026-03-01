@@ -1022,45 +1022,46 @@ html, body {
     opacity: 0.7;
 }
 
-/* ================= RESPONSIVE CONTACT ================= */
-
-@media (max-width: 900px) {
-    .contact-container {
-        grid-template-columns: 1fr; /* On empile les colonnes */
-        gap: 30px;
-        width: 100%;
-        margin: 0 auto;
-    }
-
+/* METTRE CE BLOC TOUT EN BAS DU FICHIER CSS */
+@media (max-width: 768px) {
+    /* On force la section à ne pas déborder */
     .contact-section {
-        padding: 40px 20px; /* On remplace les 2cm par 20px pour gagner de la place */
+        padding: 20px !important; 
+        width: 100vw !important;
+        overflow-x: hidden;
     }
 
-    /* On réduit la taille des textes pour mobile */
-    .contact-left h1 {
-        font-size: 26px; /* Plus petit que les 32px du PC */
-        text-align: center; /* On centre le titre pour le mobile */
+    /* On force le conteneur à être sur une seule colonne */
+    .contact-container {
+        display: block !important; /* On oublie la grille si elle pose souci */
+        width: 100% !important;
+    }
+
+    /* On force l'image à rétrécir */
+    .contact-image {
+        width: 100% !important;
+        max-width: 300px !important; /* Taille raisonnable pour smartphone */
+        height: auto !important;
+        margin: 0 auto !important;
+        display: block !important;
+    }
+
+    /* On réduit les textes */
+    .contact-left h1, .bouquet-text {
+        font-size: 22px !important;
+        text-align: center !important;
     }
 
     .contact-left p {
-        font-size: 18px; /* Plus petit que les 21px */
-        text-align: center;
+        font-size: 16px !important;
+        text-align: center !important;
     }
 
-    .bouquet-text {
-        font-size: 24px !important; /* On réduit le texte Ferionapi */
-        text-align: center;
-    }
-
-    .contact-image {
-        margin: 20px auto; /* Centre l'image horizontalement */
-        display: block;
-    }
-
-    /* On réduit un peu le padding interne du formulaire pour gagner de la place */
+    /* On centre le formulaire */
     .contact-right {
-        padding: 25px 20px;
-        width: 100%;
+        width: 100% !important;
+        padding: 20px !important;
+        margin-top: 30px !important;
     }
 }
 /* ================= MODALE PROJET ================= */
