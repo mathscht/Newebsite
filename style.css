@@ -700,6 +700,86 @@ html, body {
         padding: 0 20px;
     }
 }
+@media (max-width: 768px) {
+
+    /* --- SECTION SERVICES --- */
+    #services {
+        padding: 40px 20px !important; /* On réduit les 2cm qui sont trop larges sur mobile */
+    }
+
+    .services-intro {
+        font-size: 22px !important; /* On réduit la taille du titre de section */
+        margin-bottom: 30px !important;
+    }
+
+    .services-list {
+        grid-template-columns: 1fr !important; /* Une seule colonne */
+        gap: 20px !important;
+    }
+
+    .service-card {
+        min-height: auto !important; /* On retire la hauteur fixe pour éviter les grands vides */
+        padding: 20px !important;
+    }
+
+    .service-card img {
+        height: 200px !important; /* Image un peu plus petite */
+    }
+
+    /* --- SECTION PROCESS --- */
+    #process {
+        padding: 40px 20px !important;
+    }
+
+    .process-intro h2 {
+        font-size: 22px !important;
+    }
+
+    .process-intro p {
+        font-size: 17px !important;
+    }
+
+    .process-steps {
+        grid-template-columns: 1fr !important; /* Une seule colonne */
+        gap: 25px !important;
+    }
+
+    .process-step {
+        min-height: auto !important; /* On laisse le contenu dicter la hauteur */
+        padding: 25px 20px !important;
+    }
+
+    .process-step h3 {
+        margin-bottom: 15px !important; /* Moins d'espace sous le titre du step */
+    }
+
+    .connection-line {
+        display: none !important; /* La ligne horizontale ne fonctionne plus en mode vertical */
+    }
+
+    /* --- SECTION CTA SERVICES --- */
+    .cta-services {
+        padding: 60px 20px !important;
+    }
+
+    .cta-services h2 {
+        white-space: normal !important; /* Retour à la ligne obligatoire sur mobile */
+        font-size: 20px !important;
+        line-height: 1.3 !important;
+        margin-bottom: 30px !important;
+    }
+
+    .cta-buttons {
+        flex-direction: column !important; /* Boutons l'un sur l'autre */
+        gap: 15px !important;
+    }
+
+    .cta-btn {
+        width: 100% !important; /* Boutons pleine largeur pour faciliter le clic */
+        max-width: 300px !important;
+        text-align: center !important;
+    }
+}
 /* ================= À PROPOS ================= */
 .about-section {
     width: 100%;
