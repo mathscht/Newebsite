@@ -179,7 +179,28 @@ html, body {
 .mobile-menu a:hover {
     background-color: #cfb8e98d;
 }
+.mobile-menu {
+    position: relative;
+    z-index: 1000;
+}
 
+.mobile-menu details[open] ul {
+    position: absolute;
+    top: 60px; /* ajuste selon hauteur navbar */
+    right: 0;
+    background: white;
+    width: 100%;
+    padding: 20px;
+    z-index: 2000;
+}
+.mobile-menu summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+.mobile-menu summary::-webkit-details-marker {
+    display: none;
+}
 /* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
     /* cache le menu horizontal et le bouton Me contacter */
