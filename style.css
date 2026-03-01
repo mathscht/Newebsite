@@ -906,6 +906,96 @@ html, body {
     from { opacity: 0; transform: translateY(5px); }
     to   { opacity: 1; transform: translateY(0); }
 }
+/* ================= RESPONSIVE COMPLET : À PROPOS & FAQ ================= */
+@media (max-width: 768px) {
+
+    /* --- SECTION À PROPOS --- */
+    .about-section {
+        padding: 30px 20px 40px !important;
+    }
+
+    /* Le parent qui contient tout (Titre, Image, Texte) */
+    .about-top {
+        display: flex !important;
+        flex-direction: column !important; /* Empile tout verticalement */
+        gap: 20px !important;
+        text-align: center !important;
+    }
+
+    /* ASTUCE : On "casse" l'enveloppe du texte pour libérer le titre */
+    .about-text {
+        display: contents !important; 
+    }
+
+    /* 1. LE TITRE (Cible directe) */
+    .about-text .intro-title {
+        order: 1 !important; 
+        font-size: 22px !important;
+        margin: 0 !important;
+        display: block !important;
+        font-family: 'Libre Baskerville', 400 Italic;
+        color: #720d04;
+    }
+
+    /* 2. L'IMAGE */
+    .about-image {
+        order: 2 !important;
+        width: 200px !important;
+        height: 200px !important;
+        margin: 0 auto !important;
+        flex: none !important;
+    }
+
+    /* 3. LE TEXTE COURANT (On cible les paragraphes restants) */
+    .about-text p:not(.intro-title) {
+        order: 3 !important;
+        font-size: 16px !important;
+        line-height: 1.5 !important;
+        margin: 0 !important;
+    }
+
+    .about-image img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        border-radius: 8px !important;
+    }
+
+    /* --- BOUTONS D'ACTION --- */
+.about-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-top: 25px !important;
+}
+
+.about-actions .cta-btn {
+    /* On annule le flex-grow et la base de 220px */
+    flex: none !important; 
+    
+    /* On définit une largeur basée sur le contenu ou une largeur fixe raisonnable */
+    width: fit-content !important; 
+    min-width: 160px !important; /* Largeur minimale réduite */
+    max-width: 280px !important; /* Pour éviter qu'ils ne touchent les bords */
+    
+    /* On ajuste le texte et l'espacement interne */
+    font-size: 14px !important; 
+    padding: 10px 20px !important;
+    text-align: center !important;
+}
+
+    /* --- SECTION FAQ --- */
+    .faq-section {
+        margin-top: 50px !important;
+        padding: 30px 20px !important; 
+    }
+    .faq-intro h3 { font-size: 18px !important; }
+    .faq-intro p { font-size: 22px !important; margin-bottom: 25px !important; }
+    .faq-item summary { font-size: 16px !important; }
+    .faq-content { font-size: 15px !important; }
+    .faq-footer { font-size: 15px !important; text-align: center !important; }
+}
 /* ================= CONTACT PAGE ================= */
 .contact-section {
     width: 100%;
