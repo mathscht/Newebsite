@@ -46,171 +46,111 @@ body {
 html, body {
     overflow-x: hidden;
 }
-/* ================= NAVBAR ================= */
+/* ================= NAVBAR GLOBALE ================= */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 28px 80px 18px;
+    padding: 20px 80px; /* Ajusté pour plus de régularité */
     border-bottom: 1px solid #720d04;
-
     position: sticky;
     top: 0;
     background-color: #ffffff;
+    z-index: 1000;
+}
 
-    z-index: 10;
-}
-/* Logo */
-.logo-container {
-    margin-left: 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
 .logo-link {
     display: flex;
     align-items: center;
     gap: 10px;
     text-decoration: none;
 }
-.logo-img {
-    height: 50px;
-    width: auto;
-}
-.logo-text {
-    font-size: 18px;
-    font-weight: 500;
-    color: #720d04;
-}
 
-/* Menu horizontal PC */
-.nav-links {
-    display: flex;
-    justify-content: center; /* centre les onglets */
-    flex: 1; /* espace entre logo et bouton */
-}
+.logo-img { height: 50px; width: auto; }
+.logo-text { font-size: 18px; font-weight: 500; color: #720d04; }
+
+/* Menu PC */
 .nav-links ul {
     display: flex;
     gap: 56px;
     list-style: none;
-    margin: 0;
-    padding: 0;
-}
-.nav-links a {
-    font-size: 18px;
-    font-weight: 500;
-    color: #720d04;
-    text-decoration: none;
-    position: relative;
-    padding-bottom: 2px;
-}
-/* Hover underline */
-.nav-links > ul > li > a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 0%;
-    height: 1px;
-    background-color: #720d04;
-    transition: width 0.25s ease;
-}
-.nav-links > ul > li > a:hover::after {
-    width: 100%;
 }
 
-/* Bouton Me contacter PC */
-.right-menu {
-    display: flex;
-    align-items: center;
-}
-.right-menu .nav-link {
-    font-size: 18px;
-    font-weight: 500;
-    color: #720d04;
+.nav-links a, .right-menu a {
     text-decoration: none;
+    color: #720d04;
+    font-weight: 500;
+}
+
+.right-menu .nav-link {
     padding: 6px 16px;
     border: 1px solid #720d04;
     border-radius: 4px;
-    transition: background-color 0.25s ease, color 0.25s ease;
-}
-.right-menu .nav-link:hover {
-    background-color: #cfb8e98d;
-    color: #720d04;
-}
-/* ================= MENU BURGER MOBILE ================= */
-.mobile-menu {
-    display: none; /* caché sur PC */
-    margin-left: 0;
-}
-.mobile-menu details summary {
-    cursor: pointer;
-    padding: 8px 12px;
-    border: 1px solid #720d04;
-    border-radius: 4px;
-    background-color: #fff;
-    color: #720d04;
-    font-size: 16px;
-    list-style: none;
-}
-.mobile-menu details[open] summary {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-}
-.mobile-menu ul {
-    list-style: none;
-    margin: 0;
-    padding-left: 0;
-    border: 1px solid #720d04;
-    border-radius: 0 0 4px 4px;
-    background-color: #fff;
-}
-.mobile-menu li {
-    padding: 8px 12px;
-    border-bottom: 1px solid #720d04;
-}
-.mobile-menu li:last-child {
-    border-bottom: none;
-}
-.mobile-menu a {
-    display: block;
-    padding: 12px;
-    font-size: 18px;
-    text-decoration: none;
-    color: #720d04;
-}
-.mobile-menu a:hover {
-    background-color: #cfb8e98d;
-}
-.mobile-menu {
-    position: relative;
-    z-index: 1000;
-}
-.mobile-menu summary {
-    cursor: pointer;
-    list-style: none;
+    transition: 0.25s;
 }
 
-.mobile-menu summary::-webkit-details-marker {
-    display: none;
+/* ================= MENU MOBILE (BURGER) ================= */
+.mobile-menu {
+    display: none; /* Caché sur PC */
+    position: relative;
 }
-/* ================= RESPONSIVE ================= */
+
+.burger {
+    background: none;
+    border: 1px solid #720d04;
+    color: #720d04;
+    font-size: 24px;
+    padding: 5px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.mobile-links {
+    display: none; /* Caché par défaut */
+    list-style: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #ffffff;
+    border: 1px solid #720d04;
+    width: 200px;
+    margin-top: 10px;
+    padding: 0;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* État actif déclenché par le JS */
+.mobile-links.active {
+    display: block;
+    animation: slideDown 0.3s ease;
+}
+
+.mobile-links li { border-bottom: 1px solid #720d04; }
+.mobile-links li:last-child { border-bottom: none; }
+
+.mobile-links a {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    color: #720d04;
+    font-size: 16px;
+    text-align: center;
+}
+
+.mobile-links a:hover { background-color: #cfb8e98d; }
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================= RESPONSIVE (768px) ================= */
 @media (max-width: 768px) {
-    /* cache le menu horizontal et le bouton Me contacter */
-    .nav-links,
-    .right-menu {
-        display: none;
-    }
-    /* affiche burger */
-    .mobile-menu {
-        display: block;
-    }
-}
-@media (min-width: 769px) {
-    .mobile-menu {
-        display: none;
-    }
+    .navbar { padding: 15px 20px; }
+    .nav-links, .right-menu { display: none; } /* Cache le menu PC */
+    .mobile-menu { display: block; } /* Affiche le burger */
 }
 /* ================= SECTIONS ================= */
 /* Par défaut, on cache toutes les sections */
@@ -1221,64 +1161,4 @@ html, body {
   .project-slider img {
     height: 250px;
   }
-}
-@media (max-width: 768px) {
-
-    /* 🔥 SUPPRIME TOUS LES CM */
-    #services,
-    #process,
-    .about-section,
-    .contact-section,
-    .faq-section {
-        padding-left: 20px !important;
-        padding-right: 20px !important;
-    }
-
-    /* 🔥 TITRES trop larges */
-    .cta-services h2 {
-        white-space: normal;
-    }
-
-    /* 🔥 images */
-    img {
-        max-width: 100%;
-        height: auto;
-    }
-
-}
-
-.mobile-menu ul {
-    pointer-events: auto;
-}
-/* MENU BURGER OPEN */
-.mobile-menu details[open] ul {
-    position: fixed;
-    top: 80px; /* juste sous la navbar */
-    left: 0;
-    width: 100%;
-    height: calc(100vh - 80px);
-    background: white;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 20px;
-    z-index: 9999;
-    pointer-events: auto; /* force les clics */
-}
-.mobile-menu details {
-    position: static;
-}
-.mobile-menu details[open] ul {
-    animation: slideDown 0.3s ease;
-}
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }

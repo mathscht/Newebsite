@@ -12,13 +12,12 @@
 
     <main class="main-content">
 
-        <header class="navbar">
-
+<header class="navbar">
     <div class="logo-container">
-    <a href="#" class="logo-link nav-link" data-section="realisations">
-        <img src="Images/LOGO.png" alt="Logo Mathilde Schmit" class="logo-img">
-        <span class="logo-text">Mathilde Schmit</span>
-    </a>
+        <a href="#" class="logo-link nav-link" data-section="realisations">
+            <img src="Images/LOGO.png" alt="Logo Mathilde Schmit" class="logo-img">
+            <span class="logo-text">Mathilde Schmit</span>
+        </a>
     </div>
 
     <nav class="nav-links">
@@ -26,27 +25,22 @@
             <li><a href="#" class="nav-link" data-section="realisations">Réalisations</a></li>
             <li><a href="#" class="nav-link" data-section="services">Services</a></li>
             <li><a href="#" class="nav-link" data-section="apropos">À propos</a></li>
-            </ul>
+        </ul>
     </nav>
 
-    <!-- Bouton Me contacter PC -->
     <div class="right-menu">
         <a href="#" class="nav-link" data-section="contact">Me contacter</a>
     </div>
 
-    <!-- Menu mobile burger -->
-  <div class="mobile-menu">
-    <details>
-      <summary>Menu ☰</summary>
-      <ul>
-        <li><a href="#" class="nav-link">Réalisations</a></li>
-        <li><a href="#" class="nav-link">Services</a></li>
-        <li><a href="#" class="nav-link">À propos</a></li>
-        <li><a href="#" class="nav-link">Me contacter</a></li>
-      </ul>
-    </details>
-  </div>
-
+    <div class="mobile-menu">
+        <button class="burger" aria-label="Menu">☰</button>
+        <ul class="mobile-links">
+            <li><a href="#" class="nav-link" data-section="realisations">Réalisations</a></li>
+            <li><a href="#" class="nav-link" data-section="services">Services</a></li>
+            <li><a href="#" class="nav-link" data-section="apropos">À propos</a></li>
+            <li><a href="#" class="nav-link" data-section="contact">Me contacter</a></li>
+        </ul>
+    </div>
 </header>
 
         <section id="realisations" class="page-section page-section-full active">
@@ -750,6 +744,27 @@
     </div>
   </div>
 </div>
+<script>
+    const burgerBtn = document.querySelector('.burger');
+    const mobileMenu = document.querySelector('.mobile-links');
 
+    // Ouvrir / Fermer au clic sur le bouton
+    burgerBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Empêche la fermeture immédiate
+        mobileMenu.classList.toggle('active');
+    });
+
+    // Fermer le menu si on clique sur un lien
+    document.querySelectorAll('.mobile-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+    });
+
+    // Fermer le menu si on clique n'importe où ailleurs sur l'écran
+    document.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+    });
+</script>
 </body>
 </html>
