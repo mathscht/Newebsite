@@ -132,38 +132,45 @@ body {
 .right-menu .nav-link::after {
     content: none;
 }
-/* ================= NAVBAR MOBILE - VERSION COMPACTE ================= */
+/* ================= NAVBAR MOBILE - VERSION HORIZONTAL SCROLL ================= */
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: row; /* garder logo + menu sur la même ligne */
+        flex-direction: row; /* garder tout sur la même ligne */
         justify-content: space-between;
         align-items: center;
-        padding: 12px 16px; /* padding réduit */
+        padding: 8px 12px;
     }
 
     .logo-img {
-        height: 40px; /* logo plus petit */
+        height: 36px;
     }
 
     .logo-text {
-        font-size: 16px; /* texte logo plus petit */
+        font-size: 14px;
+    }
+
+    .nav-links {
+        overflow-x: auto; /* autorise le scroll horizontal si trop large */
+        -webkit-overflow-scrolling: touch; /* pour mobile */
     }
 
     .nav-links ul {
-        gap: 16px; /* réduire l’espace entre les onglets */
+        display: flex;
+        gap: 12px; /* réduire l’espace entre les liens */
+        white-space: nowrap; /* empêche le retour à la ligne */
+        padding: 0;
+        margin: 0;
     }
 
     .nav-links a {
-        font-size: 14px; /* liens plus petits */
+        font-size: 13px;
+        padding: 4px 6px;
     }
 
     .right-menu .nav-link {
-        font-size: 14px;
-        padding: 4px 10px;
+        font-size: 13px;
+        padding: 3px 8px;
     }
-
-    /* si besoin, cacher certains éléments trop larges */
-    /* .nav-links { display: none; } pour un burger éventuel */
 }
 /* ================= SECTIONS ================= */
 /* Par défaut, on cache toutes les sections */
