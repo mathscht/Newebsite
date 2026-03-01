@@ -864,7 +864,12 @@ html, body {
 }
 
 .about-actions .cta-btn {
-    flex: 1 1 220px; /* chaque bouton prend la même largeur minimale */
+    flex: 1 1 220px; /* largeur minimale identique pour tous */
+    text-align: center; /* centre le texte horizontalement */
+    display: flex; /* on utilise flex pour centrer verticalement aussi */
+    align-items: center; /* centre verticalement le texte */
+    justify-content: center; /* centre horizontalement le texte */
+    padding: 12px 20px; /* padding interne */
 }
 
 /* ================= FAQ (Harmonisée) ================= */
@@ -1048,7 +1053,7 @@ html, body {
         border-radius: 8px !important;
     }
 
-    /* --- BOUTONS D'ACTION --- */
+/* --- BOUTONS D'ACTION --- */
 .about-actions {
     display: flex !important;
     flex-direction: column !important;
@@ -1058,15 +1063,12 @@ html, body {
 }
 
 .about-actions .cta-btn {
-    /* On annule le flex-grow et la base de 220px */
     flex: none !important; 
-    
-    /* On définit une largeur basée sur le contenu ou une largeur fixe raisonnable */
-    width: fit-content !important; 
-    min-width: 160px !important; /* Largeur minimale réduite */
-    max-width: 280px !important; /* Pour éviter qu'ils ne touchent les bords */
-    
-    /* On ajuste le texte et l'espacement interne */
+
+    /* LARGEUR FIXE POUR UNIFORMITÉ */
+    width: 220px !important; /* tous les boutons auront la même largeur */
+
+    /* TEXTE ET ESPACEMENT */
     font-size: 14px !important; 
     padding: 10px 20px !important;
     text-align: center !important;
