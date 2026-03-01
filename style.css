@@ -271,10 +271,6 @@ html, body {
     cursor: pointer; /* Transforme la souris en main */
 }
 
-.project-item * {
-    pointer-events: none; /* Empêche les images à l'intérieur de bloquer le clic sur le parent */
-}
-
 .project-img {
     width: 100%;
     height: 320px;       /* toutes les images même hauteur */
@@ -1280,7 +1276,7 @@ html, body {
     margin: 5vh auto;
     background: #ffffff;
     /* On passe le padding haut de 30px à 20px */
-    padding: 20px 40px 40px 40px; 
+    padding: 20px 40px 15px 40px; 
     overflow: hidden;
     border-radius: 8px;
     display: flex;
@@ -1381,10 +1377,11 @@ html, body {
 
 .project-slider img {
   flex: 0 0 auto;
-  height: 580px; /* même hauteur pour toutes les images */
-  object-fit: cover;
+  max-height: 65vh;
+  width: auto;
+  object-fit: contain; /* 🔥 change cover → contain */
   scroll-snap-align: start;
-  border-radius: 4px;
+  border-radius: 2px;
 }
 .project-modal-description a {
     color: inherit;       /* prend la couleur du texte de la modale */
