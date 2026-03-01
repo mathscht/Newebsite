@@ -41,35 +41,11 @@ body {
     background-color: #ffffff;
     z-index: 100;
 }
+
+/* Menu classique PC */
 .nav-links {
-  display: flex;
-}
-
-.logo-container {
-  display: flex;
-  align-items: center; /* aligne verticalement */
-  gap: 10px; /* espace entre logo et texte */
-  text-decoration: none; /* supprime le soulignement du lien */
-  color: inherit;        /* garde la couleur du texte */
-}
-.logo-container:hover {
-    opacity: 0.8; /* optionnel : léger effet au survol */
-}
-.logo-link {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* espace logo / texte */
-  text-decoration: none; /* enlève le soulignement */
-}
-.logo-img {
-  height: 50px;
-  width: auto;
-}
-
-.logo-text {
-  font-size: 18px;
-  font-weight: 500;
-  color: #720d04;
+    display: flex;
+    gap: 56px;
 }
 
 .nav-links ul {
@@ -85,7 +61,6 @@ body {
     text-decoration: none;
     position: relative;
     padding-bottom: 2px;
-    letter-spacing: 0.02em;
 }
 
 .nav-links > ul > li > a::after {
@@ -103,23 +78,22 @@ body {
     width: 100%;
 }
 
+/* Bouton Me contacter */
 .right-menu {
     display: flex;
     align-items: center;
     gap: 16px;
 }
 
-/* Bouton encadré pour Me contacter */
 .right-menu .nav-link {
     font-size: 18px;
     font-weight: 500;
     color: #720d04;
     text-decoration: none;
     padding: 6px 16px;
-    border: 1px solid #720d04;   /* encadré */
-    border-radius: 4px;           /* coins arrondis */
+    border: 1px solid #720d04;
+    border-radius: 4px;
     transition: background-color 0.25s ease, color 0.25s ease;
-    position: relative;
 }
 
 /* Hover : fond légèrement coloré */
@@ -128,21 +102,22 @@ body {
     color: #720d04;
 }
 
-/* Supprime le soulignement hover de la nav normale pour ce bouton */
-.right-menu .nav-link::after {
-    content: none;
+/* ================= MENU MOBILE ================= */
+.mobile-menu {
+    display: none; /* caché par défaut */
 }
-/* ========== MENU RESPONSIVE ========== */
+
+/* RESPONSIVE */
 @media (max-width: 768px) {
-    /* Cache le menu classique sur mobile */
+    /* Masque le menu classique sur mobile */
     .nav-links {
         display: none !important;
     }
 
-    /* Affiche le menu déroulant */
+    /* Affiche le menu mobile */
     .mobile-menu {
         display: block;
-        margin-left: auto; /* pousse à droite du logo */
+        margin-left: auto;
     }
 
     .mobile-menu details {
