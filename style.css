@@ -132,71 +132,62 @@ body {
 .right-menu .nav-link::after {
     content: none;
 }
-/* ================= NAVBAR MOBILE (tous les téléphones) ================= */
+/* Cacher le menu desktop sur mobile */
 @media (max-width: 768px) {
-    .navbar {
-        flex-direction: column !important; /* empile verticalement */
-        align-items: flex-start;
-        padding: 12px 16px;
-        border-bottom: 1px solid #720d04;
-    }
-
-    .logo-container {
-        margin-bottom: 12px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    /* Menu principal empilé */
     .nav-links {
-        display: block !important; /* forcer l’affichage vertical */
-        width: 100%;
-        margin-bottom: 12px;
+        display: none; /* on cache le menu classique */
     }
 
-    .nav-links ul {
-        display: block !important;
-        padding-left: 0;
-        margin: 0;
-    }
-
-    .nav-links li {
-        margin-bottom: 8px;
-    }
-
-    .nav-links a {
-        font-size: 14px; /* taille réduite */
+    .mobile-menu {
         display: block;
-        padding: 8px 0;
+        width: auto;
+        margin-left: auto; /* pousse à droite */
+    }
+
+    .mobile-menu details {
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .mobile-menu summary {
+        list-style: none;
+        padding: 8px 12px;
+        border: 1px solid #720d04;
+        border-radius: 4px;
+        background-color: #fff;
         color: #720d04;
-        text-decoration: none;
     }
 
-    .nav-links > ul > li > a::after {
-        display: none; /* supprime le trait hover */
+    .mobile-menu summary:hover {
+        background-color: #cfb8e98d;
     }
 
-    /* Bouton Me contacter en plein largeur */
-    .right-menu {
-        width: 100%;
-        margin-top: 8px;
-    }
-
-    .right-menu .nav-link {
-        display: block;
-        width: 100%;
-        text-align: center;
-        padding: 10px 0;
-        font-size: 14px;
+    .mobile-menu ul {
+        padding-left: 0;
+        margin: 8px 0 0 0;
         border: 1px solid #720d04;
         border-radius: 4px;
         background-color: #fff;
     }
 
-    .right-menu .nav-link:hover {
-        background-color: #cfb8e98d;
+    .mobile-menu li {
+        list-style: none;
+        padding: 8px 12px;
+        border-bottom: 1px solid #720d04;
+    }
+
+    .mobile-menu li:last-child {
+        border-bottom: none;
+    }
+
+    .mobile-menu a {
+        text-decoration: none;
         color: #720d04;
+        display: block;
+    }
+
+    .mobile-menu a:hover {
+        background-color: #cfb8e98d;
     }
 }
 /* ================= SECTIONS ================= */
