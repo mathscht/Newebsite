@@ -213,11 +213,11 @@ html, body {
 /* ================= SECTIONS FULL WIDTH ================= */
 /* Section pleine largeur uniquement */
 .page-section-full {
-    max-width: 100vw;       /* largeur totale de la fenêtre */
+    max-width: 100%;       /* largeur totale de la fenêtre */
     width: 100vw;
     padding-left: 0;        /* plus de padding interne */
     padding-right: 0;
-    margin-left: calc(-50vw + 50%);  /* on compense le centrage du body */
+    margin: 0;  /* on compense le centrage du body */
     margin-right: calc(-50vw + 50%);
 }
 
@@ -1204,4 +1204,28 @@ html, body {
   .project-slider img {
     height: 250px;
   }
+}
+@media (max-width: 768px) {
+
+    /* 🔥 SUPPRIME TOUS LES CM */
+    #services,
+    #process,
+    .about-section,
+    .contact-section,
+    .faq-section {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    /* 🔥 TITRES trop larges */
+    .cta-services h2 {
+        white-space: normal;
+    }
+
+    /* 🔥 images */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
 }
