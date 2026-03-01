@@ -28,6 +28,24 @@ body {
     font-weight: normal;
     font-style: normal;
 }
+@media (max-width: 768px) {
+
+    .navbar {
+        padding: 16px 20px; /* beaucoup plus petit */
+    }
+
+    .nav-links ul {
+        gap: 20px; /* réduit l’espace entre liens */
+    }
+
+    .logo-text {
+        font-size: 16px; /* texte plus petit */
+    }
+
+}
+html, body {
+    overflow-x: hidden;
+}
 /* ================= NAVBAR ================= */
 .navbar {
     display: flex;
@@ -118,11 +136,6 @@ body {
 .right-menu .nav-link:hover {
     background-color: #cfb8e98d;
     color: #720d04;
-}
-@media (max-width: 768px) {
-    body {
-        background: red;
-    }
 }
 /* ================= MENU BURGER MOBILE ================= */
 .mobile-menu {
