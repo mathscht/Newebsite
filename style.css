@@ -1445,23 +1445,41 @@ body p.bouquet-text {
 }
 /* RESPONSIVE */
 @media (max-width: 768px) {
+  /* Contenu modale */
   .project-modal-content {
     padding: 20px;
     margin: 5vh 20px;
+    max-height: 90vh; /* plus de place pour slider et texte */
+    flex-direction: column;
   }
 
+  /* Texte et images empilés */
   .project-info-grid {
     flex-direction: column;
-    gap: 16px;
+    gap: 16px; /* espace entre titre/meta et description */
   }
 
-  .project-left {
-    flex: 1;
+  .project-left,
+  .project-right {
+    flex: 1 1 auto; /* prennent toute la largeur */
+    padding-right: 0; /* supprime la marge inutile */
+  }
+
+  /* Slider images */
+  .project-slider {
+    width: 100%;
+    margin-top: 10px;
+    overflow-x: auto; /* scroll horizontal toujours possible */
   }
 
   .project-slider img {
-    height: 250px;
+    width: 100%;       /* image pleine largeur */
+    height: auto;      /* conserve les proportions */
+    max-height: 250px; /* limite la hauteur pour mobile */
+    object-fit: cover; /* ou contain selon le rendu voulu */
   }
+
+  /* Flèches invisibles sur mobile */
   .slider-arrow {
     display: none !important;
   }
