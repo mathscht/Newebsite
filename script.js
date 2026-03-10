@@ -11,6 +11,10 @@ document.addEventListener("DOMContentLoaded", function () {
     function switchSection(targetId, scrollTargetId = null) {
         if (!targetId) return;
 
+        // NOUVEAU 1 : Fermer les mentions légales et CGV si elles sont ouvertes
+        const allFooterContents = document.querySelectorAll('.footer-content');
+        allFooterContents.forEach(c => c.style.display = 'none');
+
         // A. Masquer toutes les sections et éléments liés
         sections.forEach(sec => sec.classList.remove("active"));
         if (ctaServices) ctaServices.classList.remove("active");
@@ -30,15 +34,23 @@ document.addEventListener("DOMContentLoaded", function () {
             // C. Mettre à jour l'URL sans recharger
             window.history.pushState(null, null, `#${targetId}`);
 
-            // D. Gestion du Scroll
+            // D. Gestion du Scroll (CORRECTION DÉFINITIVE)
+            // On utilise un petit délai pour laisser le temps au CSS d'afficher la section
             setTimeout(() => {
+                // 1. On remet à zéro le défilement global de la page (de manière instantanée)
+                window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+
+                // 2. On remet à zéro le défilement interne de la section (au cas où le CSS gère le scroll)
+                targetSection.scrollTop = 0;
+
+                // 3. Si on a cliqué sur une ancre spécifique (data-scroll)
                 if (scrollTargetId) {
                     const el = document.getElementById(scrollTargetId);
                     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-                } else {
-                    window.scrollTo({ top: 0, behavior: "smooth" });
                 }
-            }, 100);
+            }, 10); // 10 millisecondes suffisent au navigateur pour rafraîchir l'affichage
         }
     }
 
@@ -128,7 +140,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Affichage
                 projectModal.style.display = "block";
-                // Petit timeout pour laisser le temps au navigateur de voir le display block avant l'animation
                 setTimeout(() => {
                     projectModal.classList.add("active");
                 }, 10);
@@ -140,6 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
         modalClose?.addEventListener("click", closeProjectModal);
         modalOverlay?.addEventListener("click", closeProjectModal);
     }
+
     /* ================= 6. FORMULAIRE DE CONTACT (AJAX) ================= */
     const contactForm = document.querySelector(".contact-form");
     const successMessage = document.querySelector(".form-success");
@@ -165,19 +177,40 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(() => alert("Erreur de connexion."));
         });
     }
-  document.querySelectorAll('.project-modal').forEach(modal => {
-  const slider = modal.querySelector('.project-slider');
-  const btnLeft = modal.querySelector('.slider-arrow.left');
-  const btnRight = modal.querySelector('.slider-arrow.right');
 
-  if (!slider || !btnLeft || !btnRight) return;
+    /* ================= BOUTONS SLIDER MODALE ================= */
+    document.querySelectorAll('.project-modal').forEach(modal => {
+        const slider = modal.querySelector('.project-slider');
+        const btnLeft = modal.querySelector('.slider-arrow.left');
+        const btnRight = modal.querySelector('.slider-arrow.right');
 
-  btnLeft.addEventListener('click', () => {
-    slider.scrollBy({ left: -slider.clientWidth, behavior: 'smooth' });
-  });
+        if (!slider || !btnLeft || !btnRight) return;
 
-  btnRight.addEventListener('click', () => {
-    slider.scrollBy({ left: slider.clientWidth, behavior: 'smooth' });
-  });
-});
-});
+        btnLeft.addEventListener('click', () => {
+            slider.scrollBy({ left: -slider.clientWidth, behavior: 'smooth' });
+        });
+
+        btnRight.addEventListener('click', () => {
+            slider.scrollBy({ left: slider.clientWidth, behavior: 'smooth' });
+        });
+    });
+
+    /* ================= 7. FOOTER TOGGLE ================= */
+    document.querySelectorAll('.footer-link').forEach(link => {
+        link.addEventListener('click', () => {
+            const target = document.getElementById(link.dataset.target);
+            const allContents = document.querySelectorAll('.footer-content');
+
+            allContents.forEach(c => {
+                if (c !== target) c.style.display = 'none'; // ferme les autres
+            });
+
+            target.style.display = (target.style.display === 'none') ? 'block' : 'none';
+            // Scroll vers le bas si on l'ouvre
+            if (target.style.display === 'block') {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+}); // FIN DU DOMContentLoaded
